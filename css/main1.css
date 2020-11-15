@@ -1,0 +1,738 @@
+/* we are using figure in this we need to set X
+  
+  figure {
+    margin: 0;
+  } or else it wont inherit from the body at the sthe start given by us
+  always when giving figure use that property
+
+*/
+
+html,body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    
+    overflow-x: hidden;
+}
+figure {
+    margin: 0;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    color:#e8e9eb;
+    font-family: 'Merriweather', serif;
+    line-height: 1.6;
+    
+}
+
+h1{
+    color: aqua;
+    line-height: 1;
+    font-size: 3.125rem;
+}
+
+span{
+    color: aqua;
+    font-family: 'Merriweather', serif;
+    display: block;
+    /* display block will do in columns breaks the line and keep in nexxt row */
+    letter-spacing: 4px;
+    font-size: 4rem;
+    /* rem 5.5 times bigger than main */
+    text-transform: uppercase;
+
+}
+
+h2{
+    font-family: 'Merriweather', serif;
+    font-size: 2rem;
+    color: darkgray;
+    letter-spacing: 3.5px;
+    line-height: 1;
+
+}
+h1,h2,p{
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.welcome{
+    background-image: url(../img/header-bg.png);
+    height: 100vh;
+    width: 100%;
+    
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.welcome h1{
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: lightslategray;
+    line-height: 5rem;
+    text-align: center;
+
+}
+
+#h1::before{
+    content: '';
+    display: block;
+    margin: 0px auto 2.3rem;
+    width: 50%;
+    height: 1px;
+    background: darkblue;
+}
+
+#h1::after{
+    content: '';
+    display: block;
+    margin: 2.3rem auto 0;/* margin top is set 2rem */
+    width: 50%;
+    height: 1px;
+    background: darkblue;
+}
+
+
+.intro{
+    display: flex;
+    color: aliceblue;
+    /* keep all in one line */
+}
+
+.intro-middle{
+    background: #223843;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 32rem;
+    padding: 1.7rem;
+}
+.intro-middle h2{
+    color: white;
+    padding-bottom: 1rem;
+    font-family: 'Merriweather', serif;
+    text-transform: uppercase;
+    letter-spacing: 3.5px;
+}
+
+.intro-middle h2::after{
+    content: '';
+    width: 20%;
+    height: 1px;
+    background: rgba(255,255,255,0.7);
+    margin: 1.5rem auto 0;
+    display: block;
+}
+
+.intro-left img,
+.intro-right img{
+    object-fit: cover;
+    max-width: 100%;
+    min-height: 100%;
+    
+
+}
+
+@media screen and (max-width: 600px) {
+    .intro-left img,
+    .intro-right img{
+        display: none;
+    }
+}
+
+
+
+  /* abou me */
+
+.container{
+    margin :0 auto;
+    width:90%;
+    max-width: 50rem;/* almost 900px */
+    /* only in 50rem space we are working */
+}
+.about-me{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+  
+
+@media screen and (max-width: 600px) {
+    .about-img{
+        float: left;/* wanna use float comment display grid property and use */
+        margin-right: 1em;
+        /* margin-bottom: 1em; */
+    }
+    /* below is used frequently to give space between sections not overlapping float */
+    .about-me::after{
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+
+
+
+.about-subtitle{
+    margin: .75em 0;
+  /* new thing */
+}
+
+
+
+
+
+@supports(display:grid){
+
+    .about-me{
+        display: grid;
+        grid-template-columns: [port-start] minmax(5.8em,1fr) [name-start] minmax(5.8em,1fr) [img-end] 6fr [port-end];
+        grid-column-gap: 0.75em;
+    }
+    .about-img{
+        max-width: 100%;
+        max-height: 25rem;
+        grid-column: port-start/img-end;
+        grid-row: 1/4;/* start at 1row and end at 2 1row istop border of image as second row follows down border of image */
+    }
+      .about-title{
+        grid-column: name-start/port-end;
+        /* align-self: end; */
+        grid-row: 1/2;
+        margin-bottom: 0.25em;
+    }
+    .about-subtitle{
+        grid-row: 2/3;
+        /* padding-left: 1em; */
+    }
+    .about-text{
+        /* grid-column:port-start/port-end; */
+        grid-row: 3/4;
+        /* padding-left: 1em; */
+        color: #223843;
+    }
+
+}
+
+@media screen and (max-width: 600px){
+    @supports(display:grid){
+        .about-me{
+            display: grid;
+            grid-template-columns: [port-start] minmax(5.8em,1fr) [name-start] minmax(5.8em,1fr) [img-end] 6fr [port-end];
+        }
+        
+        .about-img{
+            max-width: 100%;
+            max-height: 25rem;
+            grid-column: port-start/img-end;
+            grid-row: 1/2;
+            
+        }
+        .about-title{
+            grid-column: name-start/port-end;
+            align-self: end;
+            grid-row: 1/2;
+            margin-bottom: 0.25em;
+        }
+        .about-subtitle,
+        .about-text{
+            grid-column:port-start/port-end;
+        }
+    
+    } 
+}
+/* grid-row:1/2 means
+start at 1row and end at 2 1row istop border of image as second row follows down border of image */
+
+
+
+#container-1{
+    width: 90%;
+    margin: 0 auto;
+    max-width:88% ;
+}
+.portfolio{
+    text-align:center;
+    background: lightgray;
+    padding: 2em 0;
+}
+.p-title{
+    padding-bottom: 0.5rem;
+}
+.p-title::after{
+    content: "";
+    display: block;
+    background:darkblue;
+    height: 1px;
+    width: 25%;
+    margin:1.5rem  auto 0 ;
+}
+/* ====================== */
+/* if the browse doesnit support grid it uses the flex property */
+.portfolio-items{
+    display: flex;
+    flex-wrap: wrap;
+}
+.portfolio-item{
+    position: relative;
+    overflow: hidden;
+    flex: 1 1 20em;
+    
+}
+/* display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 20em;
+    these three will run if grid doesn,t work in above two
+} */
+/* ============================= */
+.portfolio-image{
+    display: block;
+    border-style: none;
+    width: 100%;
+}
+
+
+
+
+.portfolio-item figcaption{
+    position:absolute;/* to place text on image we use position absolute */
+    top: 100%;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background:rgba(3, 175, 194,0.5);
+    color: #e8e9eb;
+    padding: 2em;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-end; */
+    transition: top ease-in-out 250ms;
+}
+
+.portfolio-item:hover figcaption{
+    /* when hovererd on port folio item set figcaption top to 0 */
+    top:0;
+
+}
+/* to work on cell phone */
+.portfolio-item:focus figcaption{
+    /* when hovererd on port folio item set figcaption top to 0 */
+    top:0;
+
+}
+
+
+.portfolio-title{
+    color: #e8e9eb;
+    font-size: 3rem;
+    margin-bottom: auto;
+    /* in flex if we do margin bottom auto it pushes 
+    all the stuff at the end except the selected class */
+
+}
+
+
+.portfolio-link{
+    color: white;
+    font-weight: 300;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-bottom: 3px solid #e8e9eb;
+    align-self:flex-start;/* for bottom border */
+    /* instead of width we can use align-self:flex-start as we are
+    using flex in parent child posses those properties*/
+}
+
+
+.portfolio-link::after{
+    content:url(../img/arrow.svg);
+    display: inline-block;
+    height: .8em;
+    width: .8em;
+    margin-left: .5em;
+}
+
+@supports(display:grid){
+    .portfolio-items{
+        display: grid;
+        grid-template-columns: repeat(4,1fr);/* big image will take two columns */ 
+        /* makes two colums wiith 1fr size */
+        /* grid-template-columns: repeat(auto-fit,minmax(10em,1fr)); 
+         can be used when there are more images
+        */
+        gap: 0.8em;
+    }
+    .portfolio-item.featured{
+        grid-column: 1/span 2;
+        grid-row: 1/span 2;
+    }
+    .portfolio-desc{
+        display: none;
+    }
+    .featured .portfolio-desc{
+        display: block;
+    }
+
+} 
+
+@media screen and (max-width: 600px) {
+    @supports(display:grid){
+        .portfolio-items{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);/* makes two colums wiith 1fr size */
+            
+        }
+      
+    } 
+    .portfolio-desc{
+        display: none;
+    }
+    .featured .portfolio-desc{
+        display: block;
+    }
+
+}
+.contact{
+    /* text-align: center; */
+    padding: 1.3em 0;
+}
+.contact h1{
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+
+}
+
+@supports (display: grid){
+    form{
+        display: grid;
+        gap:0.75rem;
+        grid-template-areas: 
+        "name    email"
+        
+        "message  message"
+        "    .     button ";
+        
+        
+    }
+    form .name{
+        grid-area: name;
+    }
+    
+    form .email{
+        grid-area: email;
+    }
+    
+    form .message{
+        grid-area: message;
+    }
+    form .button{
+        grid-column: 2/3;
+    }
+}
+
+
+
+label{
+    /* display: block; */
+    margin-top: 1em;
+    color: #223843;
+}
+
+input,textarea{
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    padding: .75em;
+    background: lightgrey;
+    border: 1px solid lightgray;
+    font-size: 1.2rem;
+
+}
+textarea{
+    height: 7rem;
+}
+
+button{
+
+    background-color:aqua; 
+    border: none;
+    color:darkblue;
+    text-decoration: none;
+    font-size: 16px; 
+    padding: .75em;
+}
+
+@media screen and (max-width:600px){
+    form {
+        display: flex;
+        flex-direction: column;
+    
+    }
+    label{
+        /* display: block; */
+        margin-top: 1em;
+        color: #223843;
+    }
+    
+    input,textarea{
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        padding: .75em;
+        background: lightgrey;
+        border: 1px solid lightgray;
+        font-size: 1.2rem;
+    
+    }
+    textarea{
+        height: 6rem;
+    }
+    .button{
+        text-align: right;
+    }
+    button{
+        
+       
+        background-color:aqua; 
+        border: none;
+        color:darkblue;
+        text-decoration: none;
+        font-size: 16px; 
+        padding: .75em;
+    }
+}
+footer{
+    background-color: black;
+}
+
+footer p{
+    text-align: center;
+    font-size: 2rem;
+    color:whitesmoke;
+}
+
+.social-icons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+/* justify content center and align items should be given to parent elements */
+
+div .social-icon{
+    
+    width:3em ;
+    height: 3em;
+    padding: 1rem 1rem;
+}
+
+
+.menu-button{
+    position: absolute;
+    top: 2.5em;
+    left: 2.5em;
+    background-color: transparent;
+    border: 0;
+}
+
+nav{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 20%;
+    left: 0;
+    z-index: 10;
+    /* width: 100%; */
+    transform: translateX(-100%);
+    transition: transform ease-in 250ms;
+}
+nav ul {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: space-around;
+    align-items: stretch;
+    background: aqua;
+}
+
+nav ul li{
+    list-style: none;
+    text-align: center;
+    width: 100%;
+    font-size: 2rem;
+    border-bottom: 1.5px solid darkblue;
+    text-transform: capitalize;
+    
+
+}
+nav ul li a{
+    display: inline-block;
+    text-decoration: none;
+    font-family: inherit;
+    padding: calc(100vh/8) 0;
+    color: blue;
+    line-height: 0;
+    /* setting line height to 0 will not calculate the text height */
+    font-weight: 400;
+
+}
+
+nav ul li:hover{
+    background-color:rgba(3, 175, 194,0.5);
+}
+.close-icon{
+    display: none;
+}
+
+.nav-pop nav{
+    transform: translateX(0);
+} 
+/* .nav{
+    transform: translateX(0);
+} */
+
+.nav-pop .container-all{
+    transform: translateX(80%);
+    /* we can see hamburger after 80% as given right=20% */
+    transition: transform ease-in 250ms;
+}
+
+.nav-pop .close-icon{
+    display: block;
+    
+}
+.nav-pop .hamburger{
+    display: none;
+}
+.nav-pop .menu-button{
+    transform: translateX(-50%);
+    /* making close mark closer to the menu */
+}
+
+.portfolio-modal{
+    position: fixed;/* comes out of normal document flow */
+    z-index:  10;
+    top: 2em;
+    bottom: 2em;
+    left: 2em;
+    right: 2em;
+    background: white;
+    box-shadow: 0 0 0 3rem rgba(black,0.5);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    color: black;
+}
+
+.portfolio-header{
+    text-align: left;
+    padding: 5em 0;
+}
+
+.portfolio-header:nth-of-type(1){
+    background-image: url(https://images.unsplash.com/photo-1585676623595-e60b97115f7e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80);
+    background-size: cover;
+    background-position: center;
+    height: 35%;
+
+}
+
+.portfolio-title-box{
+    background: rgba(3, 175, 194,0.5);
+    padding: 3em 3rem 0rem 3rem;
+    color: white;
+    width: 70%;
+
+}
+
+.portfolio-model-title{
+    color: white;
+    font-size: 3.5rem;
+    display: inline-block;/* will behave like text can be used to set correct underline width*/
+}
+
+.portfolio-model-title::after{
+    content: '';
+    display: block;
+    background: white;
+    height: 1px;
+    margin: 1em 0 0.85rem 0;
+    width: 100%;
+}
+.portfolio-model-subtitle{
+    font-size: 1.5rem;
+}
+.portfolio-content p{
+    text-align: left;
+    width: 85%;
+    margin: 2em auto 2em auto;
+    
+}
+
+#full-width{
+    /* width: calc(100vw-4em); */
+    width: 100%;
+    
+    height: 20vh;
+    object-fit: cover;/* will fit the full image bette way */
+}
+
+
+.portfolio-pull-left{
+    width: 40%;
+    float: left;
+    margin-right: 2em;
+}
+.gap::after{
+    content: '';
+    display: block;
+    clear: both;
+}
+
+
+.portfolio-pull-right{
+    width: 40%;
+    float: right;
+    margin-left: 2em;
+}
+
+.no-margin p{
+    margin-top: 0;
+    
+}
+
+.modal-close{
+    background: white;
+    top: 1em;
+    left: 1em;
+    position: fixed;
+    
+    border-radius: 50%;
+    cursor: pointer;
+    width: 2em;
+    height: 2em;
+    padding: 4px 0 0;
+}
+
+.portfolio-modal{
+    display: none;
+}
+
+.modal-open{
+    display:block;
+}

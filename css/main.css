@@ -1,0 +1,279 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+body{
+    
+    color:#e8e9eb;
+    font-family: 'Merriweather', serif;
+    line-height: 1.6;
+    
+}
+
+h1{
+    color: aqua;
+    line-height: 1;
+    font-size: 3.125rem;
+}
+
+span{
+    color: aqua;
+    font-family: 'Merriweather', serif;
+    display: block;
+    /* display block will do in columns breaks the line and keep in nexxt row */
+    letter-spacing: 4px;
+    font-size: 4rem;
+    /* rem 5.5 times bigger than main */
+    text-transform: uppercase;
+
+}
+
+h2{
+    font-family: 'Merriweather', serif;
+    font-size: 2rem;
+    color: darkgray;
+    letter-spacing: 3.5px;
+    line-height: 1;
+
+}
+h1,h2,p{
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+.welcome{
+    background-image: url(../img/header-bg.png);
+    height: 100vh;
+    width: 100%;
+    
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome h1{
+    font-size: 1.75rem;
+    font-weight: 400;
+    color: lightslategray;
+    line-height: 5rem;
+    text-align: center;
+
+}
+
+#h1::before{
+    content: '';
+    display: block;
+    margin: 0px auto 2.3rem;
+    width: 50%;
+    height: 1px;
+    background: darkblue;
+}
+
+#h1::after{
+    content: '';
+    display: block;
+    margin: 2.3rem auto 0;/* margin top is set 2rem */
+    width: 50%;
+    height: 1px;
+    background: darkblue;
+}
+
+
+.intro{
+    display: flex;
+    color: aliceblue;
+    /* keep all in one line */
+}
+
+.intro-middle{
+    background: #223843;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 30rem;
+    padding: 1.7rem;
+}
+.intro-middle h2{
+    color: white;
+    padding-bottom: 1rem;
+    font-family: 'Merriweather', serif;
+    text-transform: uppercase;
+    letter-spacing: 3.5px;
+}
+
+.intro-middle h2::after{
+    content: '';
+    width: 20%;
+    height: 1px;
+    background: rgba(255,255,255,0.7);
+    margin: 1.5rem auto 0;
+    display: block;
+}
+
+.intro-left img,
+.intro-right img{
+    object-fit: cover;
+    max-width: 100%;
+    min-height: 100%;
+    
+
+}
+
+@media screen and (max-width: 600px) {
+    .intro-left img,
+    .intro-right img{
+        display: none;
+    }
+}
+
+
+
+  /* abou me */
+
+  .container{
+    margin :0 auto;
+    width:90%;
+    max-width: 50rem;/* almost 900px */
+    /* only in 50rem space we are working */
+  }
+  .about-me{
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+  }
+  
+
+  @media screen and (max-width: 600px) {
+    .about-img{
+        float: left;/* wanna use float comment display grid property and use */
+        margin-right: 1em;
+        /* margin-bottom: 1em; */
+    }
+    /* below is used frequently to give space between sections not overlapping float */
+    .about-me::after{
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+
+
+
+  .about-subtitle{
+    margin: .75em 0;
+  /* new thing */
+  }
+  @supports(display:grid){
+      .about-me{
+          display: grid;
+          grid-template-columns: [port-start] minmax(5.8em,1fr) [name-start] minmax(5.8em,1fr) [img-end] 6fr [port-end];
+      }
+      .about-img{
+          max-width: 100%;
+          max-height: 25rem;
+          grid-column: port-start/img-end;
+          grid-row: 1/2;/* start at 1row and end at 2 1row istop border of image as second row follows down border of image */
+      }
+      .about-title{
+          grid-column: name-start/port-end;
+          align-self: end;
+          grid-row: 1/2;
+          margin-bottom: 0.25em;
+      }
+      .about-subtitle,
+      .about-text{
+          grid-column:port-start/port-end;
+      }
+
+    }
+ 
+
+.portfolio{
+    text-align: center;
+    background: lightgray;
+    padding: 2em 0;
+}
+
+
+.portfolio-item{
+    position: relative;
+    overflow: hidden;
+    
+}
+.portfolio-item figcaption{
+    position:absolute;/* to place text on image we use position absolute */
+    top: 100%;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background:rgba(3, 175, 194,0.5);
+    color: #e8e9eb;
+    padding: 2em;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-end; */
+    transition: top ease-in-out 250ms;
+}
+
+.portfolio-item:hover figcaption{
+    /* when hovererd on port folio item set figcaption top to 0 */
+    top:0;
+
+}
+/* to work on cell phone */
+.portfolio-item:focus figcaption{
+    /* when hovererd on port folio item set figcaption top to 0 */
+    top:0;
+
+}
+.portfolio-title{
+    color: #e8e9eb;
+    font-size: 3rem;
+    margin-bottom: auto;
+    /* in flex if we do margin bottom auto it pushes 
+    all the stuff at the end except the selected class */
+
+}
+
+.portfolio-image{
+    display: block;
+    width: 100%;
+    /* float: left; */
+}
+
+.portfolio-link{
+    color: white;
+    font-weight: 300;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-bottom: 3px solid #e8e9eb;
+    align-self:flex-start;/* for bottom border */
+    /* instead of width we can use align-self:flex-start as we are
+    using flex in parent child posses those properties*/
+}
+
+.portfolio-link::after{
+    content:url(../img/arrow.svg);
+    display: inline-block;
+    height: .8em;
+    width: .8em;
+    margin-left: .5em;
+}
+
+
+@supports(display:grid){
+    .portfolio-items{
+        display: grid;
+        grid-template-columns: repeat(2,5fr);/* makes two colums wiith 1fr size */
+        
+    }
+} 
